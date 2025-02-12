@@ -1,5 +1,5 @@
 import java.util.Scanner;
-class Otpgenerator
+class OtpValidation
 {
 	public static void main(String[] args)
 	{
