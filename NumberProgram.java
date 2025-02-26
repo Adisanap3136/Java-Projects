@@ -12,15 +12,17 @@ class NumberProgram
 			System.out.println("5. Find the factorial of Num");
 			System.out.println("6. Reverse the Number: ");
 			System.out.println("7. Reverse the String: ");
-			System.out.println("7. Exit");
+			System.out.println("8. Armstrong Number: ");
+			System.out.println("Enter any value to exit");
 			System.out.print("Enter the choice: ");
 			int ch=sc.nextInt();
+			System.out.println();
 			switch(ch)
 			{
 				case 1:{
 					System.out.print("Enter the num: ");
 					int n=sc.nextInt();
-					primeOrNot(n);
+					primeOrNot(n);//method calling
 					break;
 				}
 				case 2:{
@@ -59,6 +61,12 @@ class NumberProgram
 					System.out.print("Enter the String: ");
 					String str=sc.next();
 					reverseString(str);
+					break;
+				}
+				case 8:{
+					System.out.print("Enter the number: ");
+					int n=sc.nextInt();
+					armStrong(n);
 					break;
 				}
 				default: System.out.println("Invalid Input!"); return;
@@ -133,10 +141,21 @@ class NumberProgram
 	public static void reverseNum(int a)
 	{
 		//this code can reverse the number;
+		boolean flag=true;
+		if(a<0)
+		{
+			flag =false;
+			a=a*(-1);
+		}
 		int rev=0;
 		for(int i=a;i>0;i/=10)
 			rev=rev*10+(i%10);
-		System.out.println(a+" Now reverse is: "+rev);
+		if(!flag)
+		{
+			rev=rev*(-1);
+			System.out.println(a+" Now reverse is: "+rev);
+		}else
+			System.out.println(a+" Now reverse is: "+rev);
 	}
 
 	public static void reverseString(String ch)
@@ -149,5 +168,22 @@ class NumberProgram
 			rev=c+rev;
 		}
 		System.out.println(ch+" reversed string is: "+rev);
+	}
+
+	public static void armStrong(int a)
+	{
+		//this code check the num is armstrong or not
+		int len=0;
+		for(int i=a;i>0;i/=10)
+			len++;
+		int sum=0;
+		for(int j=a;j>0;j/=10)
+		{
+			int pow=1;
+			for(int i=1;i<=len;i++)
+				pow*=(j%10);
+			sum+=pow;
+		}
+		System.out.println(sum==a?+a+" is Armstrong Number":a+" is NOT Armstrong Number");
 	}
 }
